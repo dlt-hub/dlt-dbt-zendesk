@@ -1,0 +1,33 @@
+/* Table: views */
+{{
+    config(
+        materialized='incremental'
+    )
+}}
+SELECT
+    t.url,
+    t.id,
+    t.title,
+    t.active,
+    t.updated_at,
+    t.created_at,
+    t.default,
+    t.position,
+    t.execution__group_by,
+    t.execution__group_order,
+    t.execution__sort_by,
+    t.execution__sort_order,
+    t.execution__group__id,
+    t.execution__group__title,
+    t.execution__group__filterable,
+    t.execution__group__sortable,
+    t.execution__group__order,
+    t.execution__sort__id,
+    t.execution__sort__title,
+    t.execution__sort__filterable,
+    t.execution__sort__sortable,
+    t.execution__sort__order,
+    t.raw_title,
+    t._dlt_load_id,
+    t._dlt_id,
+FROM  {{ ref('stg_views') }} as t

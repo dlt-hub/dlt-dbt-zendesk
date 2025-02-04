@@ -1,0 +1,44 @@
+/* Table: tickets */
+{{
+    config(
+        materialized='incremental'
+    )
+}}
+SELECT
+    t.tags,
+    t.custom_fields,
+    t.url,
+    t.id,
+    t.via__channel,
+    t.via__source__from,
+    t.via__source__to,
+    t.created_at,
+    t.updated_at,
+    t.generated_timestamp,
+    t.type,
+    t.subject,
+    t.raw_subject,
+    t.description,
+    t.priority,
+    t.status,
+    t.requester_id,
+    t.submitter_id,
+    t.assignee_id,
+    t.group_id,
+    t.has_incidents,
+    t.is_public,
+    t.satisfaction_rating__score,
+    t.custom_status_id,
+    t.encoded_id,
+    t.ticket_form_id,
+    t.brand_id,
+    t.allow_channelback,
+    t.allow_attachments,
+    t.from_messaging_channel,
+    t.test_field,
+    t._dlt_load_id,
+    t._dlt_id,
+    t.organization_id,
+    t.test_field_number_two,
+    t.dummy_dropdown,
+FROM  {{ ref('stg_tickets') }} as t

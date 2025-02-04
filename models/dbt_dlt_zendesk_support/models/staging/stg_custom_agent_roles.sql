@@ -1,0 +1,78 @@
+/* Table: custom_agent_roles */
+{{
+    config(
+        materialized='view'
+    )
+}}
+-- depends_on: {{ ref('dlt_active_load_ids') }}
+
+SELECT
+/* select which columns will be available for table 'custom_agent_roles' */
+    id,
+    name,
+    description,
+    role_type,
+    created_at,
+    updated_at,
+    configuration__chat_access,
+    configuration__end_user_list_access,
+    configuration__forum_access_restricted_content,
+    configuration__light_agent,
+    configuration__manage_business_rules,
+    configuration__manage_dynamic_content,
+    configuration__manage_extensions_and_channels,
+    configuration__manage_facebook,
+    configuration__moderate_forums,
+    configuration__side_conversation_create,
+    configuration__ticket_access,
+    configuration__ticket_comment_access,
+    configuration__ticket_deletion,
+    configuration__ticket_tag_editing,
+    configuration__twitter_search_access,
+    configuration__view_deleted_tickets,
+    configuration__voice_access,
+    configuration__group_access,
+    configuration__organization_editing,
+    configuration__organization_notes_editing,
+    configuration__assign_tickets_to_any_group,
+    configuration__end_user_profile_access,
+    configuration__explore_access,
+    configuration__forum_access,
+    configuration__macro_access,
+    configuration__report_access,
+    configuration__ticket_editing,
+    configuration__ticket_merge,
+    configuration__user_view_access,
+    configuration__view_access,
+    configuration__voice_dashboard_access,
+    configuration__assign_agent_statuses,
+    configuration__manage_automations,
+    configuration__manage_contextual_workspaces,
+    configuration__manage_groups,
+    configuration__manage_group_memberships,
+    configuration__manage_organizations,
+    configuration__manage_organization_fields,
+    configuration__manage_skills,
+    configuration__manage_slas,
+    configuration__manage_suspended_tickets,
+    configuration__manage_ticket_fields,
+    configuration__manage_ticket_forms,
+    configuration__manage_triggers,
+    configuration__manage_user_fields,
+    configuration__ticket_redaction,
+    configuration__manage_macro_content_suggestions,
+    configuration__read_macro_content_suggestions,
+    configuration__view_reduced_count,
+    configuration__view_filter_tickets,
+    configuration__manage_roles,
+    configuration__manage_deletion_schedules,
+    configuration__explore_reports__ticket_access,
+    configuration__explore_reports__ticket_access_selected_groups,
+    configuration__manage_malicious_attachments,
+    team_member_count,
+    _dlt_load_id,
+    _dlt_id,
+FROM {{ source('raw_data', 'custom_agent_roles') }}
+
+/* we only load table items of the currently active load ids into the staging table */
+WHERE _dlt_load_id IN ( SELECT load_id FROM  {{ ref('dlt_active_load_ids') }} )
