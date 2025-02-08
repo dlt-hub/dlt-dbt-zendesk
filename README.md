@@ -1,7 +1,7 @@
 # Zendesk dlt-dbt Package
 
 ### Overview
-The Zendesk dlt-dbt package offers data models to help you transform and analyze Zendesk data. It's designed to integrate seamlessly with the dlt Zendesk pipeline, which extracts and loads Github data into your data warehouse.
+The Zendesk dlt-dbt package offers data models to help you transform and analyze Zendesk data. It's designed to integrate with the dlt Zendesk pipeline, which extracts and loads Zendesk data into your data warehouse.
 
 ### Who is this for?
 This package is perfect for dbt users who want to integrate Zendesk data into their analytics workflows without building models from scratch.
@@ -29,7 +29,7 @@ This package is perfect for dbt users who want to integrate Zendesk data into th
    Follow the dlt Zendesk [pipeline documentation](https://dlthub.com/docs/dlt-ecosystem/verified-sources/zendesk) to set up your pipeline. Ensure you have your Zendesk and destination credentials configured.
 
 3. **Run the Pipeline:**
-   Extract and load data from Zendesk into your data warehouse by running the pipelines. As there are two seperate pipelines for Zendesk support and talk. We'll run each seperately and model it.
+    Extract and load data from the Zendesk API into your data warehouse using the Zendesk pipeline. As Zendesk pipeline integrates multiple sources. Here, we will build a model for the `zendesk_support` source. For more details on sources, refer to the documentation.
 
 ### Step 2: Install and Configure the dbt Project
 
@@ -92,30 +92,6 @@ marts/
 ├── tests/
 ```
 
-For Zendesk talk:
-
-```text
-dbt_dlt_zendesk_pipeline_talk/
-├── analysis/
-├── macros/
-├── marts/
-├── models/
-│   ├── marts/
-│   │   ├── dim__dlt_loads.sql
-│   │   ├── dim_current_queue_activity.sql
-│   │   ├── dim_greeting_categories.sql
-│   │   ├── dim_greetings.sql
-│   │   ├── dim_settings__supported_locales.sql
-│   │   └── dim_settings.sql
-│   ├── staging/ #same models as above with prefix `stg`
-│   ├── dlt_active_load_ids.sql
-│   └── dlt_processed_load_ids.sql
-├── sources.yml
-├── tests/
-├── dbt_project.yml
-└── requirements.txt
-```
-
 ### Step 3: Run dbt
 Execute the dbt models to transform the raw Zendesk data into useful tables:
 
@@ -143,17 +119,10 @@ for data model which can be further modified as required.
 
    Here's the link to the DB diagram: [link](https://dbdiagram.io/d/zendesk_support_dlt_dbt_v0-1-0-67a1f7c0263d6cf9a0f9bb5f).
 
-2. The schema of data modelled Zendesk Talk above using dlt-dbt-generator:
-
-   ![picture](https://storage.googleapis.com/dlt-blog-images/zendesk_talk_dlt_dbt_v0.1.0.png)
-
-   Here's the link to the DB diagram: [link](https://dbdiagram.io/d/Zendesk_talk_dlt_dbt_v0-1-0-67a20abe263d6cf9a0fc28ec).
 
 > ⚠️ **Note:**
 > 
 > Please note that this is a starting template for your data model and is not the final product. It is advised to customize the data model as per your needs.
-
-   Here's the link to the DB diagram: [link](https://dbdiagram.io/d/Zendesk_talk_dlt_dbt_v0-1-0-67a20abe263d6cf9a0fc28ec).
 
 #### Optional: Advanced Usage (Generator and Licensing)
 
