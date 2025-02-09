@@ -26,7 +26,7 @@ This package is perfect for dbt users who want to integrate Zendesk data into th
    pip install dlt
    ```
 2. **Configure the Pipeline:**
-   Follow the dlt Zendesk [pipeline documentation](https://dlthub.com/docs/dlt-ecosystem/verified-sources/zendesk) to set up your pipeline. Ensure you have your Zendesk and destination credentials configured.
+   Follow the dlt [Zendesk pipeline documentation](https://dlthub.com/docs/dlt-ecosystem/verified-sources/zendesk) to set up your pipeline. Ensure you have your Zendesk and destination credentials configured.
 
 3. **Run the Pipeline:**
     Extract and load data from the Zendesk API into your data warehouse using the Zendesk pipeline. As Zendesk pipeline integrates multiple sources. Here, we will build a model for the `zendesk_support` source. For more details on sources, refer to the documentation.
@@ -85,11 +85,53 @@ marts/
 │   │   ├── dim_views__execution__columns.sql
 │   │   ├── dim_views__execution__fields.sql
 │   │   └── dim_views.sql
-│   ├── staging/  #same models as marts with prefix `stg`
+│   ├── staging/
+│   │   ├── stg__dlt_loads.sql
+│   │   ├── stg_automations__actions__value.sql
+│   │   ├── stg_automations__actions.sql
+│   │   ├── stg_automations__conditions__all.sql
+│   │   ├── stg_automations.sql
+│   │   ├── stg_brands__ticket_form_ids.sql
+│   │   ├── stg_brands.sql
+│   │   ├── stg_custom_agent_roles.sql
+│   │   ├── stg_group_memberships.sql
+│   │   ├── stg_groups.sql
+│   │   ├── stg_macros__actions.sql
+│   │   ├── stg_macros.sql
+│   │   ├── stg_organization_memberships.sql
+│   │   ├── stg_organizations.sql
+│   │   ├── stg_recipient_addresses.sql
+│   │   ├── stg_requests.sql
+│   │   ├── stg_ticket_events__child_events__added_tags.sql
+│   │   ├── stg_ticket_events__child_events__tags.sql
+│   │   ├── stg_ticket_events__child_events.sql
+│   │   ├── stg_ticket_events.sql
+│   │   ├── stg_ticket_fields__custom_field_options.sql
+│   │   ├── stg_ticket_fields__custom_statuses.sql
+│   │   ├── stg_ticket_fields__system_field_options.sql
+│   │   ├── stg_ticket_fields.sql
+│   │   ├── stg_ticket_forms__ticket_field_ids.sql
+│   │   ├── stg_ticket_forms.sql
+│   │   ├── stg_ticket_metric_events.sql
+│   │   ├── stg_ticket_metrics.sql
+│   │   ├── stg_tickets__test_multiple_choice.sql
+│   │   ├── stg_tickets.sql
+│   │   ├── stg_triggers__actions__value.sql
+│   │   ├── stg_triggers__actions.sql
+│   │   ├── stg_triggers__conditions__all.sql
+│   │   ├── stg_triggers.sql
+│   │   ├── stg_users__photo__thumbnails.sql
+│   │   ├── stg_users.sql
+│   │   ├── stg_views__conditions__all.sql
+│   │   ├── stg_views__execution__columns.sql
+│   │   ├── stg_views__execution__fields.sql
+│   │   └── stg_views.sql
 │   ├── dlt_active_load_ids.sql
-│   └── dlt_processed_load_ids.sql
+│   ├── dlt_processed_load_ids.sql
 │   └── sources.yml
 ├── tests/
+├── dbt_project.yml
+└── requirements.txt
 ```
 
 ### Step 3: Run dbt
@@ -127,7 +169,7 @@ for data model which can be further modified as required.
 #### Optional: Advanced Usage (Generator and Licensing)
 
 This package was created using the dlt-dbt-generator by dlt-plus. For more information about dlt-plus, refer to the 
-[dlt-plus documentation.](https://dlt-plus.netlify.app/docs/plus/intro/).To learn more about the dlt-dbt-generator, 
+[dlt-plus documentation.](https://dlt-plus.netlify.app/docs/plus/intro/) To learn more about the dlt-dbt-generator, 
 consult the [dlt-dbt-generator](https://dlthub.com/blog/dbt-gen) documentation.
 
 > The dimensional modelling part of the package was created with a declarative code generator and suffers from 
